@@ -142,7 +142,11 @@ class DrawingMatrix {
 
 	#savePhoto(name = 'ouput.jpg') {
 		const buffer = this.#canvas.toBuffer('image/jpeg');
-		fs.writeFileSync(`${__dirname}/../output/${name}`, buffer);
+		const dir = `${__dirname}/../output`
+		if (!fs.existsSync(dir)){
+			fs.mkdirSync(dir);
+		}
+		fs.writeFileSync(`${dir}/${name}`, buffer);
 	}
 }
 
